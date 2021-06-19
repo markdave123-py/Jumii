@@ -231,5 +231,33 @@
             }
         }
     }
-    
+}
+
+@media screen and (max-width: 780px){
+    .container{
+        min-width: unset;
+        max-width: unset;
+        flex-direction: column;
+        .header{
+            p{
+                padding-left: 10px;
+            }
+        }
+        .order-summary{
+            margin-top: 1rem;
+        }
+    }
+}
+
+@media screen and (max-width: 470px){
+    .container{
+        min-width: unset;
+        max-width: unset;
+        flex-direction: column;
+        .address-content{
+            .name{
+                flex-direction: column;
+            }
+        }
+    }
 }

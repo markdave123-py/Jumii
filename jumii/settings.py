@@ -134,8 +134,6 @@ MEDIA_URL = '/media/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-APPEND_SLASH=False
-
 
 FLW_PRODUCTION_PUBLIC_KEY = "FLWPUBK-8c39f3c92cbe03bb3b4ff6f97888fd66-X"
 FLW_PRODUCTION_SECRET_KEY = "FLWSECK-162f97ead97ecf0b85bb3f18fa163a1e-X"

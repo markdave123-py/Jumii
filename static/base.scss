@@ -30,8 +30,6 @@ a{
     color: black;
 }
 .container{
-    // padding: 0 5rem
-    // width: fit-content;
     min-width: 1200px;
     max-width: 1200px;
     margin-right: auto;
@@ -105,8 +103,9 @@ a{
            justify-content: space-between;
            flex: 27%;
            align-items: center;
-           position: relative;
+        //    position: relative;
         div{
+           position: relative;
            margin: 0.5rem  1rem;
            font-size: 16px;
            font-weight: 300;
@@ -131,9 +130,9 @@ a{
                 line-height: 15px;
                 text-align: center;
                 width: 16px;
-                top: 11px;
+                top: 4px;
                 border: 1.8px solid #fff;
-                right: 47px;
+                right: 32px;
            }
 
            &:hover{
@@ -156,19 +155,54 @@ a{
         min-width: 950px;
     }
 }
+@media screen and (max-width:970px){
 
-@media screen and (max-width: 480px){
+    .container{
+        max-width: 800px !important;
+        min-width: 800px !important;
+    }
+
+    .navbar{
+        max-width: 800px !important;
+        min-width: 800px !important;
+
+        .rightmost-nav-items{
+
+            div{
+
+                // #cart-count{
+                //     right: 19px;
+                // }
+            }
+        }
+    }
+}
+@media screen and (max-width:920px){
+    .navbar{
+        .rightmost-nav-items{
+
+            div{
+                max-width: fit-content;
+                #cart-count{
+                    right: 0px;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 520px){
     .container{
         max-width: unset !important;
         // min-width: 480px !important;
         min-width: unset !important;
-        width: 100vw;
+        // width: 100vw;
     }
 
     .navbar{
-        max-width: unset;
-        min-width: unset;
-        width: 100vw;
+        max-width: unset !important;
+        min-width: unset !important;
+        // width: 100vw;
         flex-wrap: wrap;
         height: auto;
         padding: 11px;
@@ -204,8 +238,12 @@ a{
                 
                 div{
                     margin: 0 .5rem .5rem;
+                    
                     span{
                         display: none;
+                    }
+                    #cart-count{
+                        display: block;
                     }
                     img{
                         height: 23px;

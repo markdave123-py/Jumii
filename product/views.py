@@ -1,13 +1,15 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
+from django.urls import reverse_lazy
 from django.http import JsonResponse
-from django.views.generic import ListView, DetailView, View
-from .models import Product, CartItem, UserCart, FavouriteProduct
+from django.views.generic import ListView, DetailView, View, FormView
+from .models import Product, CartItem, UserCart, FavouriteProduct, Rating
 from django.db.models import F, Count, Sum
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 import json
 from django.conf import settings
+from .forms import ProductReviewForm
 from django.http.response import HttpResponseRedirect
 
 class HomePageProductListView(ListView):
@@ -198,7 +200,6 @@ class CartPage(LoginRequiredMixin ,ListView):
 
     def get_queryset(self, **kwargs):
         qs = UserCart.objects.get(owner=self.request.user).items.all()
-        print(qs)
         return qs
 
     def get_context_data(self, **kwargs):
@@ -224,3 +225,47 @@ class Checkout(LoginRequiredMixin, View):
     def post(self, request, *args, **kwargs):
 
         return render(request, self.template_name)
+
+
+class ProductReviewView(FormView):
+    form_class = ProductReviewForm
+    template_name = 'product/create_review.html'
+    success_url = reverse_lazy('index')
+    has_rated = False
+    rating_id = ''
+
+    def form_valid(self, form):
+        validated_data = form.cleaned_data
+        pk = self.kwargs.get('pk')
+        product = get_object_or_404(Product, pk=pk)
+        try:
+            rating = product.ratings.get(user=self.request.user)
+        except Rating.DoesNotExist:
+            rating = []
+        if rating:
+            rating.rate = validated_data.get('rate')
+            rating.review = validated_data.get('review')
+            rating.save()
+        else:       
+            rate_obj = form.save(commit=False)
+            rate_obj.user = self.request.user
+            rate_obj.save()
+            product.ratings.add(rate_obj)
+        return super(ProductReviewView, self).form_valid(form)
+            
+
+    def get_context_data(self, **kwargs):
+        pk = self.kwargs.get('pk')
+        product = get_object_or_404(Product, pk=pk)
+        try:
+            rating = product.ratings.get(user=self.request.user)
+        except Rating.DoesNotExist:
+            rating = []
+        context = super().get_context_data(**kwargs)
+        context['product'] = product
+        context['rating'] = rating
+        return context
+
+
+
+

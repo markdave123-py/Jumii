@@ -3,6 +3,17 @@
     margin-top: 3rem;
 }
 
+.go-back{
+    margin: 2rem 0 0 5.5rem;
+    text-decoration: underline;
+    text-decoration-color: #f68b1e;
+    cursor: pointer;
+    a{
+        color: #f68b1e;
+        font-weight: 600;
+    }
+}
+
 .product{
     display: flex;
     flex: 70%;
@@ -80,7 +91,7 @@
 
             .cta-container{
                 margin: 1rem 0;
-                .update-cart-cta{
+                .update-cart-cta, #cart-cta-review{
                     background-color: #f68b1e;
                     color: white;
                     width: 95%;
@@ -93,6 +104,11 @@
                     font-size: 15px;
                     border-radius: .25rem;
                     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+
+                    &:hover{
+                        background-color: rgb(228, 129, 28);
+                        cursor: pointer;
+                    }
                 }
 
                 .lds-facebook{

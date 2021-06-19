@@ -13,7 +13,9 @@ body{
         line-height: 26px;
     }
 }
-
+.cart-list-cont.mb{
+    display: none;
+}
 .cart-list-cont{
     .headers{
         display: flex;
@@ -168,6 +170,103 @@ body{
             border: 1px solid #f68b1e;
         }
     }
-    
+}
 
+@media screen and (max-width: 970px){
+    .container{
+        max-width: 800px !important;
+        // min-width: 480px !important;
+        min-width: 800px !important;
+        padding: 0 1.5rem;
+    }
+}
+
+@media screen and (max-width: 800px){
+    .container{
+        max-width: unset !important;
+        // min-width: 480px !important;
+        min-width: unset !important;
+        padding: 0 1.5rem;
+    }
+
+    .navbar{
+        max-width: unset !important;
+        min-width: unset !important;
+    }
+}
+
+@media screen and (max-width: 530px){
+    .checkout-options{
+        margin-bottom: 2rem;
+    }
+    .checkout-options .btn-group button{
+        min-width: unset;
+        font-size: 1rem;
+    }
+}
+
+@media screen and (max-width: 480px){
+    .cart-list-cont{
+        display: none;
+    }
+   .cart-list-cont.mb{
+    display: flex;
+    .cart-items{
+
+        .cart-item.mb{
+            display: flex;
+            flex-direction: column;
+            .image-description-cont-mb{
+                display: flex;
+                width: 100%;
+                .image{
+                    width: 33%;
+                    padding: 4px;
+                    img{
+                        max-width: 100%;
+                        height: auto;
+                    }
+                }
+
+                .desc-mb{
+                    padding-top: 20px;
+                    width: 67%;
+                }
+
+                .unit-price-mb{
+                    margin-top: .5rem;
+
+                    .current-price{
+                        color: #f68b1e;
+                        font-size: .95rem;
+                        margin-right: 5px;
+                    }
+                    .old-price{
+                        color: #ababab;
+                        text-decoration: line-through;
+                        font-size: .8rem;
+                        
+                    }
+                }
+            }
+            .total-cont{
+                display: flex;
+                width: 100%;
+                .quantity, .sub-total{
+                    width: unset;
+                    padding: 6px 0;
+                }
+
+                .quantity{
+                    margin-left: 12px;
+                }
+            }
+        }
+        
+    }
+   }
+   .checkout-options .btn-group button{
+       min-width: unset;
+       font-size: .8rem;
+   }
 }

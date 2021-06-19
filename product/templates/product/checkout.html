@@ -174,15 +174,16 @@
         currency: "NGN",
         country: "NG",
         payment_options: "card, mobilemoneyghana, ussd",
-        redirect_url: // specified redirect URL
-          "/payment-success/",
+        // set this if your are going to use the returned details, which is expected
+        // redirect_url: // specified redirect URL
+        //   "/",
         customer: {
           email: "{{ request.user.username }}",
           phone_number: phoneNumber,
           name: "{{ request.user.last_name }} {{ request.user.first_name }}",
         },
         callback: function (data) {
-          window.location.href = '/payment-success/'
+          window.location.href = '/'
           console.log(data);
         },
         onclose: function() {

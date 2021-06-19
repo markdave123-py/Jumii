@@ -2,12 +2,25 @@
   width: 100%;
   max-width: 1200px;
   min-width: 1200px;
-  margin: 3rem auto 2rem auto;
+  margin: 2rem auto 2rem auto;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-pack: distribute;
       justify-content: space-around;
+}
+
+.go-back {
+  margin: 2rem 0 0 5.5rem;
+  text-decoration: underline;
+  -webkit-text-decoration-color: #f68b1e;
+          text-decoration-color: #f68b1e;
+  cursor: pointer;
+}
+
+.go-back a {
+  color: #f68b1e;
+  font-weight: 600;
 }
 
 .is_visible {
@@ -91,7 +104,7 @@
 
 .left-sidebar .square:hover::after {
   content: '';
-  background-color: #eb9e52;
+  background-color: rgba(246, 139, 30, 0.15);
   position: absolute;
   top: -11px;
   bottom: -11px;

@@ -274,4 +274,38 @@
 .order-summary .summary .return-to-cart a:hover {
   cursor: pointer;
 }
+
+@media screen and (max-width: 780px) {
+  .container {
+    min-width: unset;
+    max-width: unset;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .container .header p {
+    padding-left: 10px;
+  }
+  .container .order-summary {
+    margin-top: 1rem;
+  }
+}
+
+@media screen and (max-width: 470px) {
+  .container {
+    min-width: unset;
+    max-width: unset;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .container .address-content .name {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+}
 /*# sourceMappingURL=checkout.css.map */

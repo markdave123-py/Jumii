@@ -1,5 +1,4 @@
 function updateCart(elem, updateCartBtnGroup, ldsFacebook){
-    alert('updating')
     redirectToLogin()
     ldsFacebook.classList.add('show')
     let action = elem.getAttribute('data-action')

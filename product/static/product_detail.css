@@ -5,6 +5,19 @@
   margin-top: 3rem;
 }
 
+.go-back {
+  margin: 2rem 0 0 5.5rem;
+  text-decoration: underline;
+  -webkit-text-decoration-color: #f68b1e;
+          text-decoration-color: #f68b1e;
+  cursor: pointer;
+}
+
+.go-back a {
+  color: #f68b1e;
+  font-weight: 600;
+}
+
 .product {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -109,7 +122,7 @@
   margin: 1rem 0;
 }
 
-.product .product-right-detail .bottom-section .cta-container .update-cart-cta {
+.product .product-right-detail .bottom-section .cta-container .update-cart-cta, .product .product-right-detail .bottom-section .cta-container #cart-cta-review {
   background-color: #f68b1e;
   color: white;
   width: 95%;
@@ -122,6 +135,11 @@
   border-radius: .25rem;
   -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
           box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.product .product-right-detail .bottom-section .cta-container .update-cart-cta:hover, .product .product-right-detail .bottom-section .cta-container #cart-cta-review:hover {
+  background-color: #e4811c;
+  cursor: pointer;
 }
 
 .product .product-right-detail .bottom-section .cta-container .lds-facebook {
