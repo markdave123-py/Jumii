@@ -62,7 +62,8 @@ function getToken(name) {
         })
         .then(response => response.json())
         .then(resp => {
-            if(resp['total']){
+            console.log(resp)
+            if(resp['total'] != null){
                 document.getElementById('cart-count').textContent = resp['total']
             }
         })
@@ -70,10 +71,8 @@ function getToken(name) {
 function redirectToLogin(){
     let current_user = "{{ request.user }}"
     if(current_user=='ANONYMOUS_USER'){
-        alert(current_user)
         window.location.href = '/account/'
     }
-    console.log(current_user)
 }
 
 const csrftoken = getToken('csrftoken');

@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'product',
+    'social_django',
     'account',
 
     'djangoflutterwave',
@@ -53,6 +54,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    # social auth middleware
+    'social_django.middleware.SocialAuthExceptionMiddleware',
 ]
 
 ROOT_URLCONF = 'jumii.urls'
@@ -68,6 +72,9 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+
+                'social_django.context_processors.backends',  # <--
+                'social_django.context_processors.login_redirect'
             ],
         },
     },
@@ -106,6 +113,14 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.facebook.FacebookOAuth2',
+
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+
+
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
@@ -140,3 +155,10 @@ FLW_PRODUCTION_SECRET_KEY = "FLWSECK-162f97ead97ecf0b85bb3f18fa163a1e-X"
 FLW_SANDBOX_PUBLIC_KEY = "FLWPUBK_TEST-dfebf5da414d28ef8a18e2368db928c0-X"
 FLW_SANDBOX_SECRET_KEY = "FFLWSECK_TEST-1b692c0b18229d557b1f378b3c737bb8-X"
 FLW_SANDBOX = True
+
+SOCIAL_AUTH_FACEBOOK_KEY = "3006237863036157"        
+SOCIAL_AUTH_FACEBOOK_SECRET = "ffe3d5a86552bc856c1bc034869c05df"
+
+LOGIN_URL = 'acount'
+LOGOUT_URL = 'logout'
+LOGIN_REDIRECT_URL = 'index'

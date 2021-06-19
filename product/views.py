@@ -109,8 +109,8 @@ def get_user_cart_total(request):
     
     if request.user.is_authenticated:
         data = UserCart.objects.get(owner=request.user).total_cart_quantity
-        print(data, data)
-        return JsonResponse({'total': data['total_sum']})
+        total = data['total_sum'] if data['total_sum'] != None else 0
+        return JsonResponse({'total': total})
     else:
         return JsonResponse({})
 
