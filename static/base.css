@@ -177,6 +177,10 @@ a {
   right: 32px;
 }
 
+.navbar .rightmost-nav-items div a:hover {
+  color: #f68b1e;
+}
+
 .navbar .rightmost-nav-items div:hover {
   color: #f68b1e;
 }
@@ -268,6 +272,9 @@ a {
     margin: 0 .5rem .5rem;
   }
   .navbar .nav-items-container .rightmost-nav-items div span {
+    display: none;
+  }
+  .navbar .nav-items-container .rightmost-nav-items div span a {
     display: none;
   }
   .navbar .nav-items-container .rightmost-nav-items div #cart-count {

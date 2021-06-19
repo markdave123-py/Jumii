@@ -135,6 +135,10 @@ a{
                 right: 32px;
            }
 
+           a:hover{
+               color: #f68b1e;
+           }
+
            &:hover{
                color: #f68b1e;
            }
@@ -241,6 +245,10 @@ a{
                     
                     span{
                         display: none;
+
+                        a{
+                            display: none;
+                        }
                     }
                     #cart-count{
                         display: block;

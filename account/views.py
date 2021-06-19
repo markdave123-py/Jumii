@@ -1,6 +1,7 @@
-from django.shortcuts import render
-from django.views.generic import CreateView, FormView
+from django.shortcuts import render, redirect
+from django.views.generic import CreateView, FormView, View
 from django.contrib.auth.views import LoginView
+from django.contrib.auth import logout
 from django.contrib.auth.forms import AuthenticationForm
 from django.urls import reverse_lazy
 from django.core.exceptions import ValidationError
@@ -44,5 +45,9 @@ class RegistrationView(FormView):
         return super(RegistrationView, self).form_valid(form)
 
 
+class Logout(View):
 
+    def get(self, request, *args, **kwargs):
+        logout(request)
+        return redirect('/')
 

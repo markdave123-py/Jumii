@@ -23,7 +23,27 @@
                     <button class="search-btn" >SEARCH</button>
                 </div>
                 <div class="rightmost-nav-items">
-                    <a href="{% url 'account' %}"><div class="login"><img src="https://img.icons8.com/ios/24/000000/user--v1.png"/><span>Account</span></div></a>
+                    <a href="{% url 'account' %}">
+                        <div class="login">
+                            {% if request.user.is_authenticated%}
+                                <a href="{% url 'logout' %}">
+                                    <!-- <img src="https://img.icons8.com/android/24/000000/logout-rounded-left.png"/> -->
+                                    <img src="https://img.icons8.com/ios/50/000000/exit.png"/>
+                                </a>
+                            {% else %}
+                                <a href="{% url 'account' %}">
+                                    <img src="https://img.icons8.com/ios/24/000000/user--v1.png"/>
+                                </a>
+                            {% endif %}
+                            <span>
+                            {% if request.user.is_authenticated%}
+                                    <a href="{% url 'logout' %}">Log Out</a>
+                            {% else %}
+                                Account
+                            {% endif %}
+                            </span>
+                        </div>
+                    </a>
                     <!-- <div class="help"><img src="https://img.icons8.com/ios/24/000000/help.png"/>Help</div> -->
                    <a href="{% url 'cart' %}"><div class="cart"><img src="https://img.icons8.com/ios/24/000000/shopping-cart.png"/><span>Cart</span> {% if request.user.is_authenticated %}<span id="cart-count"></span>{% endif %}</div></a>
                 </div>
@@ -70,7 +90,9 @@ function getToken(name) {
 
 function redirectToLogin(){
     let current_user = "{{ request.user }}"
-    if(current_user=='ANONYMOUS_USER'){
+    console.log(current_user)
+    if(current_user=='AnonymousUser'){
+        console.log('shabalalolololis_unauthenticated')
         window.location.href = '/account/'
     }
 }
