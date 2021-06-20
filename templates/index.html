@@ -25,9 +25,8 @@
             <div id="splide" class="splide">
                 <div class="splide__track">
                     <ul class="splide__list">
-                        <li class="splide__slide"><img src="https://miro.medium.com/max/4096/1*z2uMzmh6FW7wT5nXB6Y7iQ.png" alt=""></li>
-                        <li class="splide__slide"><img src="https://miro.medium.com/max/4096/1*z2uMzmh6FW7wT5nXB6Y7iQ.png" alt=""></li>
-                        <li class="splide__slide"><img src="https://miro.medium.com/max/4096/1*z2uMzmh6FW7wT5nXB6Y7iQ.png" alt=""></li>
+                        <li id="first-main" class="splide__slide"><img src="https://miro.medium.com/max/4096/1*z2uMzmh6FW7wT5nXB6Y7iQ.png" alt=""></li>
+                        <li id="first-main" class="splide__slide"><img src="https://miro.medium.com/max/4096/1*z2uMzmh6FW7wT5nXB6Y7iQ.png" alt=""></li>
                     </ul>
                 </div>
             </div>
@@ -133,13 +132,37 @@
 {% block js %}
 <script src="{% static 'dist/js/splide.min.js' %}"></script>
 <script>
+    
+let homeSliderImagesUrl =  location.origin.toString()+'/slider/images'
+fetch(homeSliderImagesUrl, {
+    method: 'GET'
+})
+.then(response => response.json())
+.then(resp => {
+    console.log(resp)
+    if(resp != null){
+        let splideList = document.getElementsByClassName('splide__list')[0]
+
+        for (elem in resp){
+            console.log(elem, resp[elem]['image'])
+            let newSplideListElement = document.createElement('li')
+            newSplideListElement.classList.add('splide__slide')
+            // newSplideListElement.classList.add('splide__slide--clone')
+            let newSplideImgElement = document.createElement('img')
+            newSplideImgElement.setAttribute('data-splide-lazy', resp[elem]['image'])
+            // newSplideImgElement.setAttribute('src', 'https://miro.medium.com/max/4096/1*z2uMzmh6FW7wT5nXB6Y7iQ.png')
+            newSplideListElement.appendChild(newSplideImgElement)
+            splideList.appendChild(newSplideListElement)
+            console.log(splideList)
+        }   
+    }
     new Splide( '#splide', {
 	type    : 'loop',
 	perPage : 1,
-    lazyLoad: true,
     width: '100%',
-    // height: '100%',
+    lazyLoad: 'nearby',
 	autoplay: true,
 } ).mount();
+})
 </script>
 {% endblock js %}

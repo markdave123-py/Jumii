@@ -63,6 +63,10 @@ a {
           align-items: center;
 }
 
+.navbar .harmburger {
+  display: none;
+}
+
 .navbar .logo {
   height: 2rem;
   vertical-align: unset;
@@ -231,6 +235,24 @@ a {
     height: auto;
     padding: 11px;
   }
+  .navbar .harmburger {
+    display: block;
+    height: 37px;
+    margin-right: 20px;
+  }
+  .navbar .harmburger img {
+    position: relative;
+    top: -6px;
+    height: 43px;
+  }
+  .navbar #logo {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
   .navbar .logo {
     height: 1.6rem;
     vertical-align: unset;
@@ -283,6 +305,47 @@ a {
   .navbar .nav-items-container .rightmost-nav-items div img {
     height: 23px;
     width: 23px;
+  }
+  .drawer .drawer__title {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+  .drawer .drawer__title h2 {
+    display: inline-block;
+    font-size: 1.7rem;
+    font-weight: 300;
+  }
+  .drawer .drawer__title img {
+    height: 1.6rem;
+  }
+  .drawer .categories-left {
+    background-color: white;
+    display: -webkit-box !important;
+    display: -ms-flexbox !important;
+    display: flex !important;
+    height: 29.5rem;
+    padding-right: 12px;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    border-radius: .25rem;
+  }
+  .drawer .categories-left a {
+    font-size: 20px;
+    line-height: 2.4rem;
+    margin: .3rem 1rem;
+  }
+  .drawer .categories-left a img {
+    height: 1.2rem;
+    width: 1.2rem;
+    margin: 4px 6px 0 0;
+    position: relative;
+    top: 3px;
+  }
+  .drawer .categories-left a:hover {
+    color: #f68b1e;
   }
 }
 /*# sourceMappingURL=base.css.map */

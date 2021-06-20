@@ -48,7 +48,9 @@ a{
     max-width: 1150px;
     min-width: 1150px;
     align-items: center;
-
+    .harmburger{
+        display: none;
+    }
     .logo{
         height: 2rem;
         vertical-align: unset;
@@ -169,16 +171,6 @@ a{
     .navbar{
         max-width: 800px !important;
         min-width: 800px !important;
-
-        .rightmost-nav-items{
-
-            div{
-
-                // #cart-count{
-                //     right: 19px;
-                // }
-            }
-        }
     }
 }
 @media screen and (max-width:920px){
@@ -198,18 +190,33 @@ a{
 @media screen and (max-width: 520px){
     .container{
         max-width: unset !important;
-        // min-width: 480px !important;
         min-width: unset !important;
-        // width: 100vw;
     }
 
     .navbar{
         max-width: unset !important;
         min-width: unset !important;
-        // width: 100vw;
         flex-wrap: wrap;
         height: auto;
         padding: 11px;
+        .harmburger{
+            display: block;
+            height: 37px;
+            margin-right: 20px;
+
+            img{
+                position: relative;
+                top: -6px;
+                height: 43px;
+            }
+        }
+        #logo{
+            display: flex;
+            align-items: center;
+
+
+        }
+
         .logo{
             height: 1.6rem;
             vertical-align: unset;
@@ -257,6 +264,47 @@ a{
                         height: 23px;
                         width: 23px;
                     }
+                }
+            }
+        }
+    }
+
+    .drawer{
+        .drawer__title{
+            display: flex;
+            h2{
+                display: inline-block;
+                font-size: 1.7rem;
+                font-weight: 300;
+                // margin: .5rem 0 0 0;
+            }
+            img{
+                height: 1.6rem;
+            }
+        }
+        .categories-left{
+            background-color: white;
+            display: flex !important;
+            height: 29.5rem;
+            padding-right: 12px;
+            flex-direction: column;
+            border-radius: .25rem;
+
+            a{
+                font-size: 20px;
+                line-height: 2.4rem;
+                margin: .3rem 1rem;
+
+                img{
+                    height: 1.2rem;
+                    width: 1.2rem;
+                    margin: 4px 6px 0 0;
+                    position: relative;
+                    top: 3px;
+                }
+
+                &:hover{
+                    color: #f68b1e;
                 }
             }
         }

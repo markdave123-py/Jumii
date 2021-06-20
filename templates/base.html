@@ -8,6 +8,7 @@
     {% block outercss %}
     {% endblock %}
     <link rel="stylesheet" href="{% static 'base.css' %}">
+    <link rel="stylesheet" href="{% static 'sidebar.css' %}">
     {% block header %}{% endblock header %}
     <title>{% block title %}{% endblock title %}</title>
 </head>
@@ -15,7 +16,13 @@
     <div class="nav-cont">
         <nav class="navbar">
             <a href="{% url 'index' %}">
-                <div id="logo"><h1>JUMII</h1><img class="logo" src="https://img.icons8.com/pastel-glyph/64/000000/fast-cart.png"/></div>
+                <div id="logo">
+                    <a class="harmburger" href="#" data-drawer-trigger aria-controls="drawer-name-left" aria-expanded="false">
+                        <img src="https://img.icons8.com/pastel-glyph/64/000000/beefburger.png"/>
+                    </a>
+                    <h1>JUMII</h1>
+                    <img class="logo" src="https://img.icons8.com/pastel-glyph/64/000000/fast-cart.png"/>
+                </div>
             </a>
             <div class="nav-items-container">
                 <div class="searchbar">
@@ -44,7 +51,6 @@
                             </span>
                         </div>
                     </a>
-                    <!-- <div class="help"><img src="https://img.icons8.com/ios/24/000000/help.png"/>Help</div> -->
                    <a href="{% url 'cart' %}"><div class="cart"><img src="https://img.icons8.com/ios/24/000000/shopping-cart.png"/><span>Cart</span> {% if request.user.is_authenticated %}<span id="cart-count"></span>{% endif %}</div></a>
                 </div>
             </div>
@@ -52,14 +58,44 @@
                 <input type="text" placeholder="Search products, brands and categories" name="search" id="nav-searchbar">
             </div>
         </nav>
+
+        
     </div>
+  
+      <section class="drawer drawer--left" id="drawer-name-left" data-drawer-target>
+        <div class="drawer__overlay" data-drawer-close tabindex="-1"></div>
+        <div class="drawer__wrapper">
+          <div class="drawer__header">
+            <div class="drawer__title">
+              <h2>Jumii</h2>
+              <img class="logo" src="https://img.icons8.com/pastel-glyph/64/000000/fast-cart.png"/>
+            </div>
+            <button class="drawer__close" data-drawer-close aria-label="Close Drawer"></button>
+          </div>
+          <div class="drawer__content">
+            <div class="categories-left">
+              <a href="{% url 'product_category' 'super-market' %}"><img src="https://img.icons8.com/ios/50/000000/apple.png"/>Supermarket</a>
+              <a href="{% url 'product_category' 'health-beauty' %}"><img src="https://img.icons8.com/material-outlined/24/000000/lipstick.png"/>Health & Beauty</a>
+              <a href="{% url 'product_category' 'home-office' %}"><img src="https://img.icons8.com/material-outlined/24/000000/home-office.png"/>Home & Office</a>
+              <a href="{% url 'product_category' 'phones-tablet' %}"><img src="https://img.icons8.com/material-outlined/24/000000/two-smartphones.png"/>Phones & Tablets</a>
+              <a href="{% url 'product_category' 'computing' %}"><img src="https://img.icons8.com/material-outlined/24/000000/laptop.png"/>Computing</a>
+              <a href="{% url 'product_category' 'electronics' %}"><img src="https://img.icons8.com/material-outlined/24/000000/electronics.png"/>Electronics</a>
+              <a href="{% url 'product_category' 'fashion' %}"><img src="https://img.icons8.com/material-outlined/24/000000/t-shirt.png"/>Fashion</a>
+              <a href="{% url 'product_category' 'foot-wear' %}"><img src="https://img.icons8.com/material-outlined/24/000000/baby-bottle.png"/>Baby Products</a>
+              <a href="{% url 'product_category' 'baby-products' %}"><img src="https://img.icons8.com/material-outlined/24/000000/chessboard.png"/>Gaming</a>
+              <a href="{% url 'product_category' 'sporting-goods' %}"><img src="https://img.icons8.com/material-outlined/24/000000/trainers.png"/>Sporting goods</a>
+              <a href="{% url 'product_category' 'automobile' %}"><img src="https://img.icons8.com/material-outlined/24/000000/suv.png"/>Automobile</a>
+          </div>
+          </div>
+        </div>
+      </section>
     
     {% block content %}
 
     {% endblock content %}
 
-<script>
 
+<script>
 function getToken(name) {
       let cookieValue = null;
       if (document.cookie && document.cookie !== '') {
@@ -77,16 +113,16 @@ function getToken(name) {
     }
 
     let userCartCountUrl =  location.origin.toString()+'/cart_total/'
-        fetch(userCartCountUrl, {
-            method: 'GET'
-        })
-        .then(response => response.json())
-        .then(resp => {
-            console.log(resp)
-            if(resp['total'] != null){
-                document.getElementById('cart-count').textContent = resp['total']
-            }
-        })
+    fetch(userCartCountUrl, {
+        method: 'GET'
+    })
+    .then(response => response.json())
+    .then(resp => {
+        console.log(resp)
+        if(resp['total'] != null){
+            document.getElementById('cart-count').textContent = resp['total']
+        }
+    })
 
 function redirectToLogin(){
     let current_user = "{{ request.user }}"
@@ -99,6 +135,7 @@ function redirectToLogin(){
 
 const csrftoken = getToken('csrftoken');
 </script>
+<script src="{% static 'sidebar.js' %}"></script>
 
 {% block js %}{% endblock js %}
 </body>

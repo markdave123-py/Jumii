@@ -476,4 +476,10 @@
 .main-content .products .product:hover .update-cart-cta:hover {
   background-color: #e4811c;
 }
+
+@media screen and (max-width: 520px) {
+  .left-sidebar {
+    display: none;
+  }
+}
 /*# sourceMappingURL=category.css.map */

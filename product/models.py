@@ -112,6 +112,13 @@ class UserCart(models.Model):
         )
         return qs['total_price']
 
+
+class HomePageSlider(models.Model):
+    image = models.ImageField(upload_to='slider')
+
+    def __str__(self):
+        return str(self.id)
+
     
 
 

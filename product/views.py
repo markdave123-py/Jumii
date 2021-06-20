@@ -2,7 +2,9 @@ from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy
 from django.http import JsonResponse
 from django.views.generic import ListView, DetailView, View, FormView
-from .models import Product, CartItem, UserCart, FavouriteProduct, Rating
+from .models import (
+    Product, CartItem, UserCart, FavouriteProduct, Rating, HomePageSlider
+    )
 from django.db.models import F, Count, Sum
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
@@ -267,5 +269,11 @@ class ProductReviewView(FormView):
         return context
 
 
+class HomeSliderImagesView(View):
+
+    def get(self, request, *args, **kwargs):
+        images = list({'image': x.image.url} for x in HomePageSlider.objects.all())
+        print(images)
+        return JsonResponse(images, safe=False)
 
 
