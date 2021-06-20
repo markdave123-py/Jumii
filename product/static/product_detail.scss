@@ -396,7 +396,11 @@
     }
 }
 
-@media screen and (max-width: 480px){
+@media screen and (max-width: 520px){
+
+    .go-back{
+        margin: 2rem 0 0 1rem;
+    }
     .container{
         flex-direction: column;
     }
@@ -407,14 +411,25 @@
                 width: fit-content;
                 margin: auto;
                 img{
-                    width: 17rem;
-                height: 17rem;
+                    width: 13rem;
+                height: 13rem;
                 }
             }
         }
 
         .product-right-detail{
             padding-left: 12px;
+            .header{
+                h1{
+                    font-size: 1.1rem;
+                }
+            }
+            .bottom-section{
+
+                .price{
+                    font-size: 1.15rem;
+                }
+            }
         }
     }
 
@@ -447,6 +462,43 @@
             .right-side{
                 .reviews-count{
                     display: none;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 385px){
+    .reviews .body .right-side .comments .comment .posted-by {
+        font-size: 0.7rem;
+    }
+}
+
+
+@media screen and (max-width: 320px){
+    .product-description{
+        .header{
+            font-size: 1.15rem;
+        }
+    }
+    .reviews 
+    {
+        .header{
+            p{
+                font-size: 1.1rem;
+            }
+        }
+
+        .body {
+            .left-side{
+                padding: 0;
+            }
+            .right-side .comments .comment {
+                .text{
+                    font-size: 0.785rem;
+                }
+                .posted-by {
+                    font-size: 0.7rem;
                 }
             }
         }

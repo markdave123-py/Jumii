@@ -315,8 +315,8 @@
             flex: 40% 0;
   }
   .products .product .image img {
-    width: 8rem;
-    height: 7.5rem;
+    width: 7rem;
+    height: 7rem;
   }
   .products .product .image .discount {
     width: 2.4rem;
@@ -344,6 +344,13 @@
     line-height: 2.7rem;
     font-size: 1.15rem;
     margin-left: .8rem;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .products .product p.name {
+    max-width: 122px;
+    padding: 0;
   }
 }
 /*# sourceMappingURL=index.css.map */
