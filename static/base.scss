@@ -72,6 +72,7 @@ a{
 
     form{
         display: flex;
+        width: 100%;
     }
     .searchbar.mobile{
         display: none;
@@ -153,6 +154,18 @@ a{
 
 }
 
+.footer{
+    margin-top: 3rem;
+    text-align: center;
+    background-color: rgb(48, 45, 45);
+    height: 22rem;
+
+    h3{
+        color: white;
+        font-size: 25px;
+        line-height: 22rem;
+    }
+}
 
 @media screen and (max-width:1200px){
     .container{
@@ -195,6 +208,10 @@ a{
     .container{
         max-width: unset !important;
         min-width: unset !important;
+    }
+    
+    .index{
+        height: 40vh;
     }
 
     .navbar{
@@ -354,3 +371,4 @@ a{
         }
     }
 }
+

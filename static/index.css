@@ -257,19 +257,6 @@
   font-weight: 350;
 }
 
-.footer {
-  margin-top: 3rem;
-  text-align: center;
-  background-color: #302d2d;
-  height: 22rem;
-}
-
-.footer h3 {
-  color: white;
-  font-size: 25px;
-  line-height: 22rem;
-}
-
 @media screen and (max-width: 1200px) {
   .container, .navbar {
     max-width: unset !important;

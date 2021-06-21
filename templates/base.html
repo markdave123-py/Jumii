@@ -101,11 +101,22 @@
 
     {% endblock content %}
 
+    <div class="footer">
+        <h3>Jumii</h3>
+    </div>
 
 <script>
     if (window.innerWidth <= 520){
         let firstForm = document.getElementById('nav-searchbar')
         firstForm.parentElement.removeChild(firstForm)
+        document.getElementById('nav-searchbar-mb')
+        .addEventListener('keyup', function(event) {
+            if (event.code === 'Enter')
+            {
+                event.preventDefault();
+                document.querySelector('.mb-submit').click();
+            }
+        });
     }else{
         let mobileForm = document.getElementById('nav-searchbar-mb')
         mobileForm.parentElement.removeChild(mobileForm)
@@ -146,15 +157,6 @@ function redirectToLogin(){
 }
 
 const csrftoken = getToken('csrftoken');
-
-document.getElementById('nav-searchbar-mb')
-    .addEventListener('keyup', function(event) {
-        if (event.code === 'Enter')
-        {
-            event.preventDefault();
-            document.querySelector('.mb-submit').click();
-        }
-    });
 </script>
 <script src="{% static 'sidebar.js' %}"></script>
 
