@@ -20,14 +20,18 @@
                     <a class="harmburger" href="#" data-drawer-trigger aria-controls="drawer-name-left" aria-expanded="false">
                         <img src="https://img.icons8.com/pastel-glyph/64/000000/beefburger.png"/>
                     </a>
-                    <h1>JUMII</h1>
+                    <a href="/">
+                        <h1>JUMII</h1>
+                    </a>
                     <img class="logo" src="https://img.icons8.com/pastel-glyph/64/000000/fast-cart.png"/>
                 </div>
             </a>
             <div class="nav-items-container">
                 <div class="searchbar">
-                    <input type="text" placeholder="Search products, brands and categories" name="search" id="nav-searchbar">
-                    <button class="search-btn" >SEARCH</button>
+                    <form action="/search" method="get">
+                        <input type="text" placeholder="Search products, brands and categories" name="q" id="nav-searchbar">
+                        <button class="search-btn" type="submit" >SEARCH</button>
+                    </form>
                 </div>
                 <div class="rightmost-nav-items">
                     <a href="{% url 'account' %}">
@@ -55,7 +59,10 @@
                 </div>
             </div>
             <div class="searchbar mobile">
-                <input type="text" placeholder="Search products, brands and categories" name="search" id="nav-searchbar">
+                <form action="/search" method="get">
+                    <input type="text" placeholder="Search products, brands and categories" name="q" id="nav-searchbar-mb">
+                    <button id="mb-submit" type="submit" style="display: none;"></button>
+                </form>
             </div>
         </nav>
 
@@ -96,6 +103,13 @@
 
 
 <script>
+    if (window.innerWidth <= 520){
+        let firstForm = document.getElementById('nav-searchbar')
+        firstForm.parentElement.removeChild(firstForm)
+    }else{
+        let mobileForm = document.getElementById('nav-searchbar-mb')
+        mobileForm.parentElement.removeChild(mobileForm)
+    }
 function getToken(name) {
       let cookieValue = null;
       if (document.cookie && document.cookie !== '') {
@@ -118,7 +132,6 @@ function getToken(name) {
     })
     .then(response => response.json())
     .then(resp => {
-        console.log(resp)
         if(resp['total'] != null){
             document.getElementById('cart-count').textContent = resp['total']
         }
@@ -128,12 +141,20 @@ function redirectToLogin(){
     let current_user = "{{ request.user }}"
     console.log(current_user)
     if(current_user=='AnonymousUser'){
-        console.log('shabalalolololis_unauthenticated')
         window.location.href = '/account/'
     }
 }
 
 const csrftoken = getToken('csrftoken');
+
+document.getElementById('nav-searchbar-mb')
+    .addEventListener('keyup', function(event) {
+        if (event.code === 'Enter')
+        {
+            event.preventDefault();
+            document.querySelector('.mb-submit').click();
+        }
+    });
 </script>
 <script src="{% static 'sidebar.js' %}"></script>
 

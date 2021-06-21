@@ -69,6 +69,10 @@ a{
         flex: 42%;
         align-items: center;
     }
+
+    form{
+        display: flex;
+    }
     .searchbar.mobile{
         display: none;
     }
@@ -210,6 +214,9 @@ a{
                 height: 43px;
             }
         }
+        form{
+            width: 100%;
+        }
         #logo{
             display: flex;
             align-items: center;
@@ -237,6 +244,8 @@ a{
             input{
                 border-radius: 2rem;
                 margin: 0;
+                height: 37px;
+                font-size: 14px;
             }
         }
         .nav-items-container{
@@ -305,6 +314,41 @@ a{
 
                 &:hover{
                     color: #f68b1e;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 350px){
+    .navbar{
+        h1{
+            font-size: 1.3rem;
+        }
+
+        .logo{
+            height: 1.3rem;
+        }
+
+        .harmburger{
+            margin-right: 9px;
+            img{
+                top: -3px;
+                height: 37px;
+            }
+        }
+
+        .nav-items-container{
+
+            .rightmost-nav-items{
+
+                div{
+
+                    img{
+                        height: 21px;
+                        width: 21px;
+                        top: 8px;
+                    }
                 }
             }
         }

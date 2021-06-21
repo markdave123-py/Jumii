@@ -14,7 +14,7 @@ urlpatterns = [
     path('checkout/', views.Checkout.as_view(), name='checkout'),
     # to create a review
     path('reviews/<str:pk>/create', views.ProductReviewView.as_view(), name="product_reviews_create"),
-
+    path('search/', views.ProductSearchView.as_view()),
     # home page slider images
     path('slider/images', views.HomeSliderImagesView.as_view())
 ]

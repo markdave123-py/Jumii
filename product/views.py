@@ -273,7 +273,21 @@ class HomeSliderImagesView(View):
 
     def get(self, request, *args, **kwargs):
         images = list({'image': x.image.url} for x in HomePageSlider.objects.all())
-        print(images)
         return JsonResponse(images, safe=False)
+
+
+class ProductSearchView(View):
+
+    def get(self, request, *args, **kwargs):
+        context = {}
+        query_param = request.GET.get('q')
+
+        products = Product.objects.filter(name__icontains=query_param)
+        in_cart_products_ids = UserCart.objects.get(
+            owner=self.request.user).items.values_list('product__id', 'quantity')
+        context['in_cart_products_ids'] = in_cart_products_ids
+        context['products'] = products
+
+        return render(request, 'product/catalog.html', context)
 
 
