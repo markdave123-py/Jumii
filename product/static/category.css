@@ -511,6 +511,7 @@
   .filter {
     float: right;
     margin-right: 1rem;
+    display: block;
   }
   .filter a {
     height: 43px;

@@ -12,9 +12,6 @@
 <div class="go-back">
      <a href="/">Go Home</a>
 </div>
-<div class="filter">
-    <a href="#" data-drawer-trigger aria-controls="drawer-name-right" aria-expanded="false">FILTER</a>
-</div>
 <div class="container">
         <div class="main-content" style="flex:1"> 
             <div class="result-count-container">
@@ -88,5 +85,5 @@
 {% endblock content %}
 
 {% block js %}
-
+<script src="{% static 'add-to-cart-btn.js' %}"></script>
 {% endblock js %}

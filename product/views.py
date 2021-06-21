@@ -3,7 +3,7 @@ from django.urls import reverse_lazy
 from django.http import JsonResponse
 from django.views.generic import ListView, DetailView, View, FormView
 from .models import (
-    Product, CartItem, UserCart, FavouriteProduct, Rating, HomePageSlider
+    Product, CartItem, UserCart, FavouriteProduct, Rating, HomePageSlider, PRODUCT_CATEGORIES
     )
 from django.db.models import F, Count, Sum
 from django.utils.decorators import method_decorator
@@ -13,6 +13,7 @@ import json
 from django.conf import settings
 from .forms import ProductReviewForm
 from django.http.response import HttpResponseRedirect
+from unicodedata import category
 
 class HomePageProductListView(ListView):
     queryset = Product.objects.all()[:5]
@@ -69,6 +70,11 @@ class ProductCategoryListView(ListView):
         in_cart_products_ids = UserCart.objects.get(
             owner=self.request.user).items.values_list('product__id', 'quantity')
         context['in_cart_products_ids'] = in_cart_products_ids
+        temp_category = self.kwargs['product_category']
+        for category in PRODUCT_CATEGORIES:
+            if category[0] == temp_category:
+                context['category'] = category[1]
+                break
         return context
 
 
@@ -175,7 +181,6 @@ def update_favourites(request):
 
     if request.user.is_authenticated:
         if request.method == 'POST':
-            print(request.body)
             data = json.loads(request.body)
             product_id = data.get('product_id')
             user_favourites = FavouriteProduct.objects.get(user=request.user)
