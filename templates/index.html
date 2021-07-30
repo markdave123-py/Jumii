@@ -2,7 +2,7 @@
 {% load static %}
 {% block header %}
     <link rel="stylesheet" href="{% static 'index.css' %}">
-    <link rel="stylesheet" href="{% static 'dist/css/splide.min.css' %}">
+    <link rel="stylesheet" href="{% static 'splide.min.css' %}">
 {% endblock header %}
 
 {% block content %}
@@ -132,7 +132,7 @@
 {% endblock content %}
 
 {% block js %}
-<script src="{% static 'dist/js/splide.min.js' %}"></script>
+<script src="{% static 'splide.min.js' %}"></script>
 <script>
     
 let homeSliderImagesUrl =  location.origin.toString()+'/slider/images'
