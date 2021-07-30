@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 import os
+from decouple import config
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -44,6 +46,7 @@ INSTALLED_APPS = [
     'account',
 
     'djangoflutterwave',
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -86,13 +89,21 @@ WSGI_APPLICATION = 'jumii.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+# if DEBUG=="TRUE":
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 
+
+# else:
+DATABASES = {
+    'default':dj_database_url.config(
+        default=config('DATABASE_URL')
+    )
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -139,25 +150,34 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'), )
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-MEDIA_ROOT =  os.path.join(BASE_DIR, 'media')
-MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL='/media/'
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-FLW_PRODUCTION_PUBLIC_KEY = "FLWPUBK-8c39f3c92cbe03bb3b4ff6f97888fd66-X"
-FLW_PRODUCTION_SECRET_KEY = "FLWSECK-162f97ead97ecf0b85bb3f18fa163a1e-X"
-FLW_SANDBOX_PUBLIC_KEY = "FLWPUBK_TEST-dfebf5da414d28ef8a18e2368db928c0-X"
-FLW_SANDBOX_SECRET_KEY = "FFLWSECK_TEST-1b692c0b18229d557b1f378b3c737bb8-X"
+FLW_PRODUCTION_PUBLIC_KEY = config("FLW_PRODUCTION_PUBLIC_KEY")
+FLW_PRODUCTION_SECRET_KEY = config("FLW_PRODUCTION_SECRET_KEY")
+FLW_SANDBOX_PUBLIC_KEY = config("FLW_SANDBOX_PUBLIC_KEY")
+FLW_SANDBOX_SECRET_KEY = config("FLW_SANDBOX_SECRET_KEY")
 FLW_SANDBOX = True
 
-SOCIAL_AUTH_FACEBOOK_KEY = "3006237863036157"        
-SOCIAL_AUTH_FACEBOOK_SECRET = "ffe3d5a86552bc856c1bc034869c05df"
+SOCIAL_AUTH_FACEBOOK_KEY = config("SOCIAL_AUTH_FACEBOOK_KEY")        
+SOCIAL_AUTH_FACEBOOK_SECRET = config("SOCIAL_AUTH_FACEBOOK_SECRET")
+
+# aws credentials
+AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = config('AWS_SECRET_ACCESS_KEY')
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+AWS_STORAGE_BUCKET_NAME = 'jumii'
+AWS_S3_FILE_OVERWRITE = False
+AWS_S3_REGION_NAME = 'us-east-2'
 
 LOGIN_URL = 'acount'
 LOGOUT_URL = 'logout'
