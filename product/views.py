@@ -67,8 +67,11 @@ class ProductCategoryListView(ListView):
     def get_context_data(self, **kwargs):
 
         context = super().get_context_data(**kwargs)
-        in_cart_products_ids = UserCart.objects.get(
-            owner=self.request.user).items.values_list('product__id', 'quantity')
+        if self.request.user.is_authenticated:
+            in_cart_products_ids = UserCart.objects.get(
+                owner=self.request.user).items.values_list('product__id', 'quantity')
+        else:
+            in_cart_products_ids = []
         context['in_cart_products_ids'] = in_cart_products_ids
         temp_category = self.kwargs['product_category']
         for category in PRODUCT_CATEGORIES:
