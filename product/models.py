@@ -37,10 +37,10 @@ class ProductTopSellingManager(models.Manager):
         return super().get_queryset().order_by('-quantity_sold')[:4]
 
     def top_footwear_trends(self):
-            return super().get_queryset().filter(category=FW).order_by('-quantity_sold')
+            return super().get_queryset().filter(category=FW).order_by('-quantity_sold')[:4]
 
     def top_phones(self):
-            return super().get_queryset().filter(category=PT).order_by('-quantity_sold')
+            return super().get_queryset().filter(category=PT).order_by('-quantity_sold')[:4]
 
 
 class Rating(models.Model):
