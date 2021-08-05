@@ -8,5 +8,4 @@ class ProductReviewForm(forms.ModelForm):
         fields = ['rate', 'review']
 
     def valid(self, validated_data):
-        print(validated_data)
         return validated_data
