@@ -291,8 +291,11 @@ class ProductSearchView(View):
         query_param = request.GET.get('q')
 
         products = Product.objects.filter(name__icontains=query_param)
-        in_cart_products_ids = UserCart.objects.get(
-            owner=self.request.user).items.values_list('product__id', 'quantity')
+        if self.request.user.is_authenticated:
+            in_cart_products_ids = UserCart.objects.get(
+                owner=self.request.user).items.values_list('product__id', 'quantity')
+        else:
+            in_cart_products_ids = []
         context['in_cart_products_ids'] = in_cart_products_ids
         context['products'] = products
 
