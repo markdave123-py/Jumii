@@ -24,7 +24,8 @@ class LoginView(FormView):
         if user is None:
             raise ValidationError('This user does not exist')
         print(user)
-        login(self.request, user)
+        # login(self.request, user)
+        login(self.request, user, backend='django.contrib.auth.backends.ModelBackend')
         return super(LoginView, self).form_valid(form)
 
 
@@ -41,7 +42,8 @@ class RegistrationView(FormView):
             password=form.cleaned_data['password']
             )
         user.save()
-        login(self.request, user)
+        # login(self.request, user)
+        login(self.request, user, backend='django.contrib.auth.backends.ModelBackend')
         return super(RegistrationView, self).form_valid(form)
 
 

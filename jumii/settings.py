@@ -87,24 +87,24 @@ TEMPLATES = [
 WSGI_APPLICATION = 'jumii.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/3.2/ref/settings/#databases
-
-# if DEBUG=="TRUE":
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
+DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': config('NAME'),
+            'USER': config('USER_NAME'),
+            'PASSWORD': config('PASSWORD'),
+            'HOST': 'localhost',
+            'PORT': '',
+        }
+}
 
 
 # else:
-DATABASES = {
-    'default':dj_database_url.config(
-        default=config('DATABASE_URL')
-    )
-}
+# DATABASES = {
+#     'default':dj_database_url.config(
+#         default=config('DATABASE_URL')
+#     )
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -168,20 +168,20 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # FLW_PRODUCTION_PUBLIC_KEY = config("FLW_PRODUCTION_PUBLIC_KEY")
 # FLW_PRODUCTION_SECRET_KEY = config("FLW_PRODUCTION_SECRET_KEY")
-FLW_SANDBOX_PUBLIC_KEY = config("FLW_SANDBOX_PUBLIC_KEY")
-FLW_SANDBOX_SECRET_KEY = config("FLW_SANDBOX_SECRET_KEY")
-FLW_SANDBOX = True
+# FLW_SANDBOX_PUBLIC_KEY = config("FLW_SANDBOX_PUBLIC_KEY")
+# FLW_SANDBOX_SECRET_KEY = config("FLW_SANDBOX_SECRET_KEY")
+# FLW_SANDBOX = True
 
-SOCIAL_AUTH_FACEBOOK_KEY = config("SOCIAL_AUTH_FACEBOOK_KEY")        
-SOCIAL_AUTH_FACEBOOK_SECRET = config("SOCIAL_AUTH_FACEBOOK_SECRET")
+# SOCIAL_AUTH_FACEBOOK_KEY = config("SOCIAL_AUTH_FACEBOOK_KEY")        
+# SOCIAL_AUTH_FACEBOOK_SECRET = config("SOCIAL_AUTH_FACEBOOK_SECRET")
 
 # aws credentials
-AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID')
-AWS_SECRET_ACCESS_KEY = config('AWS_SECRET_ACCESS_KEY')
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-AWS_STORAGE_BUCKET_NAME = 'jumii'
-AWS_S3_FILE_OVERWRITE = False
-AWS_S3_REGION_NAME = 'us-east-2'
+# AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID')
+# AWS_SECRET_ACCESS_KEY = config('AWS_SECRET_ACCESS_KEY')
+# DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+# AWS_STORAGE_BUCKET_NAME = 'jumii'
+# AWS_S3_FILE_OVERWRITE = False
+# AWS_S3_REGION_NAME = 'us-east-2'
 
 LOGIN_URL = 'acount'
 LOGOUT_URL = 'logout'
